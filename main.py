@@ -15,7 +15,9 @@ import seaborn as sns
 # Define main function
 def main():
     data = pd.read_csv(sys.argv[1], index_col=0)
-    print(data)
+    data1 = data[]
+    data1 = data1.assign(WR=lambda x : x.WHG - x.WAG)
+    print(data1)
 
 # Execute main() function
 if __name__ == '__main__':
