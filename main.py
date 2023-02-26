@@ -12,32 +12,45 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Define 
+# Global Variables
+figure = -1
+
+# Get unique figure number
+def getFigureNumber():
+    global figure
+    figure += 1
+    return figure
+
+# Define Win Lose Analysis
 def analyzeWinLose(data):
     # Analyze win differential  
     data = data.assign(WD=lambda x : x.WHG - x.WAG)
-    plt.figure(0)
+    plt.figure(getFigureNumber())
     plt.hist(data['WD'])
 
     # Analyze loss differential
     data = data.assign(LD=lambda x : x.LHG - x.LAG)
-    plt.figure(1)
+    plt.figure(getFigureNumber())
     plt.hist(data['LD'])
 
     # Analyze win rate 
     data = data.assign(WR=lambda x : x.WHG / x.LHG)
-    plt.figure(2)
+    plt.figure(getFigureNumber())
     plt.hist(data['WR'])
 
     # Analyze win rate 
     data = data.assign(LR=lambda x : x.WAG / x.LAG)
-    plt.figure(3)
+    plt.figure(getFigureNumber())
     plt.hist(data['LR'])
 
     return
 
 # Define 
 def analyzeEfficiency(data):
+    # Analyze Defense ratio 
+    data = data.assign(HAR=lambda x : x.DEHG / x.DEAG)
+    plt.figure(getFigureNumber())
+    plt.hist(data['HAR'])
     return
 
 # Define 
