@@ -14,9 +14,26 @@ import seaborn as sns
 
 # Define 
 def analyzeWinLose(data):
-    data1 = data
-    data1 = data1.assign(WR=lambda x : x.WHG - x.WAG)
-    plt.hist(data1['WR'])
+    # Analyze win differential  
+    data = data.assign(WD=lambda x : x.WHG - x.WAG)
+    plt.figure(0)
+    plt.hist(data['WD'])
+
+    # Analyze loss differential
+    data = data.assign(LD=lambda x : x.LHG - x.LAG)
+    plt.figure(1)
+    plt.hist(data['LD'])
+
+    # Analyze win rate 
+    data = data.assign(WR=lambda x : x.WHG / x.LHG)
+    plt.figure(2)
+    plt.hist(data['WR'])
+
+    # Analyze win rate 
+    data = data.assign(LR=lambda x : x.WAG / x.LAG)
+    plt.figure(3)
+    plt.hist(data['LR'])
+
     return
 
 # Define 
