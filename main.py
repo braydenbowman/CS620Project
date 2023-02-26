@@ -16,7 +16,7 @@ import seaborn as sns
 def analyzeWinLose(data):
     data1 = data
     data1 = data1.assign(WR=lambda x : x.WHG - x.WAG)
-    plt.hist(data1[:-1], data1, weights=counts)
+    plt.hist(data1['WR'])
     return
 
 # Define 
@@ -33,12 +33,18 @@ def analyzeTurnovers(data):
 
 # Define main function
 def main():
+    # Load Data
     data = pd.read_csv(sys.argv[1], index_col=0)
+
+    # Run analysis of the data
     analyzeWinLose(data)
     analyzeEfficiency(data)
     analyzeFreeThrows(data)
     analyzeTurnovers(data)
-    
+
+    # Show Plots
+    plt.show()
+
 # Execute main() function
 if __name__ == '__main__':
     main()
