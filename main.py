@@ -38,7 +38,7 @@ def analyzeWinLose(data):
     plt.figure(getFigureNumber())
     plt.hist(data['WR'])
 
-    # Analyze win rate 
+    # Analyze loss rate 
     data = data.assign(LR=lambda x : x.WAG / x.LAG)
     plt.figure(getFigureNumber())
     plt.hist(data['LR'])
@@ -55,10 +55,44 @@ def analyzeEfficiency(data):
 
 # Define 
 def analyzeFreeThrows(data):
+    # Analyze Free throw Home and Away 
+    # Get the columns
+    ftp_cols = ['FTPHG', 'FTPAG']
+    data = data[ftp_cols]
+
+    # Create a horizontal bar chart of the FTPHG and FTPAG columns
+    ax = data.plot(kind='barh', width=0.8, figsize=(10,8))
+
+    # Labels
+    ax.set_xlabel('Free Throw Percentages')
+    ax.set_ylabel('Team')
+    ax.set_title('Comparison of Home Game Free Throw % and Away Game Free Throw % by Team')
+    ax.legend(['FTPHG', 'FTPAG'], loc='upper right')
+
+    #Plot
+    plt.figure(getFigureNumber())
+    plt.show(block=False)
     return
 
 # Define 
 def analyzeTurnovers(data):
+    # Analyze Free throw Home and Away 
+    # Get the columns
+    ftp_cols = ['THG', 'TAG']
+    data = data[ftp_cols]
+
+    # Create a horizontal bar chart of the FTPHG and FTPAG columns
+    ax = data.plot(kind='barh', width=0.8, figsize=(10,8))
+
+    # Labels
+    ax.set_xlabel('Turnovers Per Game')
+    ax.set_ylabel('Team')
+    ax.set_title('Comparison of Home Game Turnovers % and Away Game Turnovers % by Team')
+    ax.legend(['THG', 'TAG'], loc='upper right')
+
+    #Plot
+    plt.figure(getFigureNumber())
+    plt.show(block=False)
     return
 
 # Define main function
