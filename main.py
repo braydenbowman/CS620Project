@@ -88,7 +88,7 @@ def analyzeTurnovers(data):
     # Labels
     ax.set_xlabel('Turnovers Per Game')
     ax.set_ylabel('Team')
-    ax.set_title('Comparison of Home Game Turnovers % and Away Game Turnovers % by Team')
+    ax.set_title('Comparison of Home Game Turnovers and Away Game Turnovers by Team')
     ax.legend(['THG', 'TAG'], loc='upper right')
 
     #Plot
