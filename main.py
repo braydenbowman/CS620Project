@@ -51,6 +51,7 @@ def analyzeEfficiency(data):
     data = data.assign(HAR=lambda x : x.DEHG / x.DEAG)
     plt.figure(getFigureNumber())
     plt.hist(data['HAR'])
+
     return
 
 # Define 
