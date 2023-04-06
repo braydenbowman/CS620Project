@@ -73,6 +73,17 @@ def analyzeFreeThrows(data):
     #Plot
     plt.figure(getFigureNumber())
     plt.show(block=False)
+    plt.clf()
+
+    plt.boxplot([data['FTPHG'], data['FTPAG']], labels=['Home', 'Away'])
+
+    # Set the title and axis labels
+    plt.title("Box Plot of Free Throw Percentages Home and Away")
+    plt.xlabel("Home/Away")
+    plt.ylabel("Free Throw Percentage")
+
+    plt.show(block = False)
+
     return
 
 # Define 
@@ -94,6 +105,16 @@ def analyzeTurnovers(data):
     #Plot
     plt.figure(getFigureNumber())
     plt.show(block=False)
+    
+    plt.clf()
+    plt.boxplot([data['THG'], data['TAG']], labels=['Home', 'Away'])
+
+    # Set the title and axis labels
+    plt.title("Box Plot of Turnovers Per Game Home and Away")
+    plt.xlabel("Home/Away")
+    plt.ylabel("Turnovers Per Game")
+
+    plt.show(block = False)
     return
 
 # Define main function
