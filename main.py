@@ -25,32 +25,40 @@ def getFigureNumber():
 def analyzeWinLose(data):
     # Analyze win differential  
     data = data.assign(WD=lambda x : x.WHG - x.WAG)
-    plt.figure(getFigureNumber())
-    plt.hist(data['WD'])
-
-    # Analyze loss differential
     data = data.assign(LD=lambda x : x.LHG - x.LAG)
-    plt.figure(getFigureNumber())
-    plt.hist(data['LD'])
 
-    # Analyze win rate 
-    data = data.assign(WR=lambda x : x.WHG / x.LHG)
     plt.figure(getFigureNumber())
-    plt.hist(data['WR'])
+    plt.boxplot([data['WD'], data['LD']], labels=['Win Difference', 'Loss Difference'])
+    plt.title("Difference of Home Wins and Away Wins for All Teams")
+    plt.xlabel("Difference of Wins and Losses Home and Away")
+    plt.ylabel("Difference")
+    plt.show(block=False)
 
-    # Analyze loss rate 
-    data = data.assign(LR=lambda x : x.WAG / x.LAG)
+    total_home_wr_avg = data['WHG'].mean()
+    total_home_lr_avg = data['LHG'].mean()
     plt.figure(getFigureNumber())
-    plt.hist(data['LR'])
+    plt.title("Home Win Rate and Away Loss Rate")
+    plt.ylabel("Win Rate %")
+    plt.bar(["Home Win Rate", "Away Loss Rate"] ,[100 * (total_home_wr_avg/41), 100 * (total_home_lr_avg/41)], width=0.5)
+    plt.ylim(0, 100)
+    plt.tight_layout()
+    plt.show(block=False)
 
     return
 
 # Define 
 def analyzeEfficiency(data):
-    # Analyze Defense ratio 
-    data = data.assign(HAR=lambda x : x.DEHG / x.DEAG)
+    # Analyze Defense and Offense ratio 
     plt.figure(getFigureNumber())
-    plt.hist(data['HAR'])
+    plt.boxplot([data['DEHG'], data['DEAG'], data['OEHG'], data['OEAG']], labels=['Home Defensive Efficiency', 'Away Defensive Efficiency', "Home Offensive Efficiency", "Away Offensive Efficiency"])
+    plt.xticks(rotation=45)
+    # Set the title and axis labels
+    plt.title("Box Plot of Defensive and Offensive Efficiency Home and Away")
+    plt.xlabel("Home/Away and Offensive/Defensive")
+    plt.ylabel("Efficiency Coefficient")
+    plt.tight_layout()
+
+    plt.show(block=False)
 
     return
 
@@ -73,7 +81,6 @@ def analyzeFreeThrows(data):
     #Plot
     plt.figure(getFigureNumber())
     plt.show(block=False)
-    plt.clf()
 
     plt.boxplot([data['FTPHG'], data['FTPAG']], labels=['Home', 'Away'])
 
